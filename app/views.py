@@ -1,7 +1,9 @@
 from flask import render_template, redirect, url_for, flash, request, send_file, send_from_directory
+from werkzeug.security import generate_password_hash
+
 from app import app
 from app.models import User
-from app.forms import ChooseForm, LoginForm
+from app.forms import ChooseForm, LoginForm, SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required, fresh_login_required
 import sqlalchemy as sa
 from app import db
@@ -13,7 +15,7 @@ import datetime
 
 @app.route("/")
 def home():
-    return render_template('home.html', title="Home")
+    return render_template('home.html', title="UniSupport")
 
 
 @app.route("/account")
@@ -21,17 +23,42 @@ def home():
 def account():
     return render_template('account.html', title="Account")
 
+@app.route("/dashboard")
+@login_required
+def dashboard():
+    return render_template('dashboard.html', title="Dashboard")
 
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+    form = SignUpForm()
+    if form.validate_on_submit():
+        user = User(
+            first_name=form.first_name.data,
+            last_name=form.last_name.data,
+            university=form.university.data,
+            email=form.email.data,
+            password_hash=generate_password_hash(form.password.data, method='pbkdf2')
+        )
+        db.session.add(user)
+        db.session.commit()
+        login_user(user)
+        flash('Your account has been created!', 'success')
+        return redirect(url_for('quiz'))
+    return render_template('signup.html', title="Sign Up", form=form)
+
+@app.route('/quiz', methods=['GET', 'POST'])
+def quiz():
+    return render_template('quiz.html', title="Onboarding Quiz")
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('home'))
+        return redirect(url_for('dashboard'))
     form = LoginForm()
     if form.validate_on_submit():
         user = db.session.scalar(
-            sa.select(User).where(User.username == form.username.data))
+            sa.select(User).where(User.email == form.email.data))
         if user is None or not user.check_password(form.password.data):
-            flash('Invalid username or password', 'danger')
+            flash('Invalid email or password', 'danger')
             return redirect(url_for('login'))
         login_user(user, remember=form.remember_me.data)
         next_page = request.args.get('next')

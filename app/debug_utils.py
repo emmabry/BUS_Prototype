@@ -7,12 +7,16 @@ def reset_db():
     db.drop_all()
     db.create_all()
 
-    users =[
-        {'username': 'amy',   'email': 'amy@b.com', 'role': 'Admin', 'pw': 'amy.pw'},
-        {'username': 'tom',   'email': 'tom@b.com',                  'pw': 'amy.pw'},
-        {'username': 'yin',   'email': 'yin@b.com', 'role': 'Admin', 'pw': 'amy.pw'},
-        {'username': 'tariq', 'email': 'trq@b.com',                  'pw': 'amy.pw'},
-        {'username': 'jo',    'email': 'jo@b.com',                   'pw': 'amy.pw'}
+    users = [
+        {'first_name': 'Test', 'last_name': 'User',
+         'university': 'University of Birmingham',
+         'email': 'test@user.com', 'pw': 'test.pw'},
+        {'first_name': 'John', 'last_name': 'Smith',
+         'university': 'University of Birmingham',
+         'email': 'john@email.com', 'pw': 'john.pw'},
+        {'first_name': 'Emma', 'last_name': 'Test',
+         'university': 'University of Birmingham',
+         'email': 'emma@email.com', 'pw': 'emma.pw'}
     ]
 
     for u in users:
