@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% import "bootstrap_wtf.html" as wtf %}
+
+{% block content %}
+    <div class="container">
+        <p>University staff or external professional? Sign up via our <a href="#">Staff Portal</a></p>
+    </div>
+    <div class="container">
+        {{ wtf.quick_form(form, action="", method="post", id="", novalidate=True, autofocus=False) }}
+    </div>
+{% endblock %}

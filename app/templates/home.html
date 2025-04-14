@@ -1,5 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Welcome</h1>
+<div class="px-4 py-5 my-5 text-center">
+    <img class="d-block mx-auto mb-2" src="/static/UniSupport.svg" alt="" width="200" height="200">
+    <h1 class="display-5 fw-bold text-body-emphasis">UniSupport</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">An all-in-one platform for academic, personal, and mental health support — built to simplify student life and connect you with the help you need, when you need it.</p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <a href="{{ url_for('signup') }}" class="btn btn-themed btn-lg px-4 gap-3">Sign Up</a>
+        <a href="{{ url_for('login') }}" class="btn btn-outline-secondary btn-lg px-4">Login</a>
+      </div>
+    </div>
+  </div>
 {% endblock %}
