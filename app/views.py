@@ -67,6 +67,13 @@ def login():
         return redirect(next_page)
     return render_template('generic_form.html', title='Sign In', form=form)
 
+@app.route('/appointments', methods = ['POST', 'GET'])
+@login_required
+def appointments():
+    user_appointments = Appointment.query.filter_by(student_id = current_user.id).order_by(Appointment.date, Appointment.time).all()
+    return render_template('appointments.html', appointments = user_appointments)
+
+
 @app.route('/logout')
 def logout():
     logout_user()
