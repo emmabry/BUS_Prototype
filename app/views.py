@@ -74,6 +74,12 @@ def appointments():
     return render_template('appointments.html', appointments = user_appointments)
 
 
+@app.route('/appointment_details/<int:id>')
+def appointment_details(id):
+    appointment = db.session.get(Appointment, id)
+    return render_template('appointment.html', appointment = appointment)
+
+
 @app.route('/logout')
 def logout():
     logout_user()
