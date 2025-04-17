@@ -1,5 +1,5 @@
 from app import db
-from app.models import User, ExternalAdvisor, Appointment
+from app.models import Student, ExternalAdvisor, Appointment
 from datetime import date, time
 
 
@@ -9,14 +9,14 @@ def reset_db():
 
     users = [
         {'first_name': 'Test', 'last_name': 'User',
-         'university': 'University of Birmingham',
-         'email': 'test@user.com', 'pw': 'test.pw'},
+         'email': 'test@user.com', 'pw': 'test.pw',
+         'role': 'student', 'course': 'Computer Science'},
         {'first_name': 'John', 'last_name': 'Smith',
-         'university': 'University of Birmingham',
-         'email': 'john@email.com', 'pw': 'john.pw'},
+         'email': 'john@email.com', 'pw': 'john.pw',
+         'role': 'student', 'course': 'Computer Science'},
         {'first_name': 'Emma', 'last_name': 'Test',
-         'university': 'University of Birmingham',
-         'email': 'emma@email.com', 'pw': 'emma.pw'}
+         'email': 'emma@email.com', 'pw': 'emma.pw',
+         'role': 'student', 'course': 'Computer Science'}
     ]
 
     user_objs = []
@@ -24,7 +24,7 @@ def reset_db():
         # get the password value and remove it from the dict:
         pw = u.pop('pw')
         # create a new user object using the parameters defined by the remaining entries in the dict:
-        user = User(**u)
+        user = Student(**u)
         # set the password for the user object:
         user.set_password(pw)
         # add the newly created user object to the database session:

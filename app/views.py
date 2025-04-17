@@ -2,7 +2,7 @@ from flask import render_template, redirect, url_for, flash, request, send_file,
 from werkzeug.security import generate_password_hash
 
 from app import app
-from app.models import User
+from app.models import Student, ExternalAdvisor, Staff, Appointment
 from app.forms import ChooseForm, LoginForm, SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required, fresh_login_required
 import sqlalchemy as sa
@@ -32,7 +32,7 @@ def dashboard():
 def signup():
     form = SignUpForm()
     if form.validate_on_submit():
-        user = User(
+        user = Student(
             first_name=form.first_name.data,
             last_name=form.last_name.data,
             university=form.university.data,
@@ -56,7 +56,7 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         user = db.session.scalar(
-            sa.select(User).where(User.email == form.email.data))
+            sa.select(Student).where(Student.email == form.email.data))
         if user is None or not user.check_password(form.password.data):
             flash('Invalid email or password', 'danger')
             return redirect(url_for('login'))
