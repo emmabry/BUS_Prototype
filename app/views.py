@@ -79,13 +79,6 @@ def calendar_view():
     cal_obj = cal.monthcalendar(year, month)
     month_name = cal.month_name[month]
     calendar = db.session.scalar(sa.select(Calendar).where(Calendar.owner_id == current_user.id))
-    if not calendar:
-        calendar = Calendar(
-            name=f"{current_user.first_name}'s Calendar",
-            owner_id=current_user.id
-        )
-        db.session.add(calendar)
-        db.session.commit()
 
     events = calendar.get_events_by_month(year, month)
 
@@ -99,6 +92,7 @@ def calendar_view():
             'title': event.title,
             'time': event.start_time.strftime('%H:%M')
         })
+    print("Events dates:", list(events_by_date.keys()))
 
     prev_month = month - 1
     prev_year = year

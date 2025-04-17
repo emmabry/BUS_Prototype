@@ -104,7 +104,6 @@ class Calendar(db.Model):
         return f'<Calendar {self.name}>'
 
     def add_event(self, title, start_time, end_time, description=None, location=None):
-        """Create and add a new event to this calendar"""
         event = Event(
             title=title,
             start_time=start_time,
@@ -128,10 +127,11 @@ class Calendar(db.Model):
         else:
             end_date = dt.datetime(year, month + 1, 1)
 
-        return self.events.filter(
+        events = self.events.filter(
             Event.start_time >= start_date,
             Event.start_time < end_date
         ).order_by(Event.start_time).all()
+        return events
 
     def get_events_between(self, start_date, end_date):
         return self.events.filter(

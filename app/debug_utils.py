@@ -66,12 +66,12 @@ def reset_db():
         Appointment(
             email="emma@email.com",
             start_time=dt.datetime(2025, 4, 20, 13, 0),
-            end_time=dt.datetime(2025, 4, 18, 13, 30),
+            end_time=dt.datetime(2025, 4, 20, 13, 30),
             title=f"Appointment with {advisor_objs[1].first_name} {advisor_objs[1].last_name}",
             description="Work placement discussion",
             student_id=user_objs[2].id,
             advisor_id=advisor_objs[1].id,
-            calendar_id=user_objs[0].calendar.id
+            calendar_id=user_objs[2].calendar.id
         )
     ]
 
