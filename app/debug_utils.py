@@ -73,3 +73,4 @@ def reset_db():
         db.session.add(appt)
 
     db.session.commit()
+
