@@ -7,9 +7,9 @@
 <ul class="list-group">
     <li class="list-group-item"><strong>Advisor:</strong> {{ appointment.advisor.first_name }} {{ appointment.advisor.last_name }}</li>
     <li class="list-group-item"><strong>Organisation:</strong> {{ appointment.advisor.organisation }}</li>
-    <li class="list-group-item"><strong>Date:</strong> {{ appointment.date.strftime('%Y-%m-%d') }}</li>
-    <li class="list-group-item"><strong>Time:</strong> {{ appointment.time.strftime('%H:%M') }}</li>
-    <li class="list-group-item"><strong>Reason:</strong> {{ appointment.reason }}</li>
+    <li class="list-group-item"><strong>Date:</strong> {{ appointment.start_time.strftime('%Y-%m-%d') }}</li>
+    <li class="list-group-item"><strong>Time:</strong> {{ appointment.start_time.strftime('%H:%M') }}</li>
+    <li class="list-group-item"><strong>Reason:</strong> {{ appointment.description }}</li>
 
 </ul>
 

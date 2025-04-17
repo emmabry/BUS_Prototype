@@ -19,7 +19,7 @@ class User(UserMixin, db.Model):
     password_hash: so.Mapped[Optional[str]] = so.mapped_column(sa.String(256))
     role: so.Mapped[str] = so.mapped_column(sa.String(50))
 
-    calendar = db.relationship('Calendar', back_populates='owner', lazy='dynamic')
+    calendar = db.relationship('Calendar', back_populates='owner', uselist=False)
 
     __mapper_args__ = {
         'polymorphic_identity': 'user',
@@ -35,6 +35,14 @@ class User(UserMixin, db.Model):
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
+
+    def create_default_calendar(self):
+        calendar = Calendar(
+            name=f"{self.first_name}'s Calendar",
+            owner_id=self.id,
+        )
+        db.session.add(calendar)
+        return calendar
 
 @dataclass
 class Student(User):
@@ -79,43 +87,18 @@ class ExternalAdvisor(User):
         'polymorphic_identity': 'external_advisors',
     }
 
-class Appointment(db.Model):
-    __tablename__ = 'appointments'
-
-    id: so.Mapped[int] = so.mapped_column(primary_key = True)
-    name: so.Mapped[str] = so.mapped_column(sa.String(100))
-    email: so.Mapped[str] = so.mapped_column(sa.String(120))
-    date: so.Mapped[dt.date] = so.mapped_column(sa.Date)
-    time: so.Mapped[dt.time] = so.mapped_column(sa.Time)
-    reason: so.Mapped[str] = so.mapped_column(sa.String(200))
-
-    student_id: so.Mapped[int] = so.mapped_column(sa.ForeignKey('users.id'))
-    student: so.Mapped['Student'] = so.relationship(
-        'Student',
-        back_populates='appointments',
-        foreign_keys=[student_id]
-    )
-
-    advisor_id: so.Mapped[int] = so.mapped_column(sa.ForeignKey('users.id'))
-    advisor: so.Mapped['ExternalAdvisor'] = so.relationship(
-        'ExternalAdvisor',
-        back_populates='appointments',
-        foreign_keys=[advisor_id]
-    )
-
 class Calendar(db.Model):
     __tablename__ = 'calendars'
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(64), nullable=False)
-    color = db.Column(db.String(20), default='#3788d8')  # Default color for the calendar
+    name = db.Column(db.String(64), nullable=False) # Default color for the calendar
     created_at = db.Column(db.DateTime, default=dt.datetime.utcnow)
 
     owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     owner = db.relationship('User', back_populates='calendar')
 
     # Aggregation relationship with Event
-    events = db.relationship('Event', back_populates='calendar', lazy='dynamic')
+    events = db.relationship('Event', back_populates='calendar', lazy='dynamic', cascade='all, delete-orphan')
 
     def __repr__(self):
         return f'<Calendar {self.name}>'
@@ -165,13 +148,18 @@ class Event(db.Model):
     location = db.Column(db.String(100))
     start_time = db.Column(db.DateTime, nullable=False)
     end_time = db.Column(db.DateTime, nullable=False)
-    is_all_day = db.Column(db.Boolean, default=False)
+    source = db.Column(db.String(50), default='user')
     created_at = db.Column(db.DateTime, default=dt.datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=dt.datetime.utcnow, onupdate=dt.datetime.utcnow)
 
     # Foreign key to Calendar
     calendar_id = db.Column(db.Integer, db.ForeignKey('calendars.id'), nullable=False)
     calendar = db.relationship('Calendar', back_populates='events')
+
+    __mapper_args__ = {
+        'polymorphic_identity': 'event',
+        'polymorphic_on': source
+    }
 
     def __repr__(self):
         return f'<Event {self.title}>'
@@ -192,6 +180,31 @@ class Event(db.Model):
             'is_all_day': self.is_all_day,
             'calendar_id': self.calendar_id
         }
+
+
+class Appointment(Event):
+    __tablename__ = 'appointments'
+
+    id = db.Column(db.Integer, db.ForeignKey('events.id'), primary_key=True)
+    email = db.Column(db.String(120))
+
+    student_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    student = db.relationship(
+        'Student',
+        back_populates='appointments',
+        foreign_keys=[student_id]
+    )
+
+    advisor_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    advisor = db.relationship(
+        'ExternalAdvisor',
+        back_populates='appointments',
+        foreign_keys=[advisor_id]
+    )
+
+    __mapper_args__ = {
+        'polymorphic_identity': 'appointment',
+    }
 
 @login.user_loader
 def load_user(id):

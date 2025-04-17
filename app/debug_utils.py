@@ -1,6 +1,6 @@
 from app import db
 from app.models import Student, ExternalAdvisor, Appointment
-from datetime import date, time
+import datetime as dt
 
 
 def reset_db():
@@ -29,7 +29,10 @@ def reset_db():
         user.set_password(pw)
         # add the newly created user object to the database session:
         db.session.add(user)
+        db.session.flush()
+        user.create_default_calendar()
         user_objs.append(user)
+
 
     advisors = [
         {'first_name': 'Sam', 'last_name': 'Smith',
@@ -50,22 +53,25 @@ def reset_db():
 
     appointments = [
         Appointment(
-            name="Test User",
             email="test@user.com",
-            date=date(2025, 4, 16),
-            time=time(9, 30),
-            reason="Career advice",
+            start_time=dt.datetime(2025, 4, 18, 9, 0),
+            end_time=dt.datetime(2025, 4, 18, 10, 0),
+            title=f"Appointment with {advisor_objs[1].first_name} {advisor_objs[1].last_name}",
+            description="Career advice",
+            location="Online",
             student_id=user_objs[0].id,
-            advisor_id=advisor_objs[0].id
+            advisor_id=advisor_objs[0].id,
+            calendar_id=user_objs[0].calendar.id
         ),
         Appointment(
-            name="Emma Test",
             email="emma@email.com",
-            date=date(2025, 4, 17),
-            time=time(11, 0),
-            reason="Work placement discussion",
+            start_time=dt.datetime(2025, 4, 20, 13, 0),
+            end_time=dt.datetime(2025, 4, 18, 13, 30),
+            title=f"Appointment with {advisor_objs[1].first_name} {advisor_objs[1].last_name}",
+            description="Work placement discussion",
             student_id=user_objs[2].id,
-            advisor_id=advisor_objs[1].id
+            advisor_id=advisor_objs[1].id,
+            calendar_id=user_objs[0].calendar.id
         )
     ]
 

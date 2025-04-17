@@ -41,6 +41,8 @@ def signup():
             password_hash=generate_password_hash(form.password.data, method='pbkdf2')
         )
         db.session.add(user)
+        db.session.flush()
+        user.create_default_calendar()
         db.session.commit()
         login_user(user)
         flash('Your account has been created!', 'success')
@@ -83,15 +85,6 @@ def calendar_view():
             owner_id=current_user.id
         )
         db.session.add(calendar)
-        db.session.commit()
-
-        default_event = Event(
-            title="Default Event",
-            start_time=dt.datetime(2025, 4, 18, 9, 0),
-            end_time=dt.datetime(2024, 4, 10, 10, 0),
-            calendar_id=calendar.id
-        )
-        db.session.add(default_event)
         db.session.commit()
 
     events = calendar.get_events_by_month(year, month)
@@ -137,14 +130,14 @@ def calendar_view():
 @app.route('/appointments', methods = ['POST', 'GET'])
 @login_required
 def appointments():
-    user_appointments = Appointment.query.filter_by(student_id = current_user.id).order_by(Appointment.date, Appointment.time).all()
+    user_appointments = Appointment.query.filter_by(student_id=current_user.id).order_by(Appointment.start_time).all()
     return render_template('appointments.html', appointments=user_appointments)
 
 
 @app.route('/appointment_details/<int:id>')
 def appointment_details(id):
     appointment = db.session.get(Appointment, id)
-    return render_template('appointment.html', appointment = appointment)
+    return render_template('appointment.html', appointment=appointment)
 
 
 @app.route('/logout')
