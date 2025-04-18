@@ -59,6 +59,7 @@ def reset_db():
             title=f"Appointment with {advisor_objs[1].first_name} {advisor_objs[1].last_name}",
             description="Career advice",
             location="Online",
+            source="appointment",
             student_id=user_objs[0].id,
             advisor_id=advisor_objs[0].id,
             calendar_id=user_objs[0].calendar.id
@@ -69,6 +70,7 @@ def reset_db():
             end_time=dt.datetime(2025, 4, 20, 13, 30),
             title=f"Appointment with {advisor_objs[1].first_name} {advisor_objs[1].last_name}",
             description="Work placement discussion",
+            source="appointment",
             student_id=user_objs[2].id,
             advisor_id=advisor_objs[1].id,
             calendar_id=user_objs[2].calendar.id

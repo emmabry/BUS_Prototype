@@ -1,6 +1,6 @@
 from flask_login import current_user
 from flask_wtf import FlaskForm
-from wtforms import SubmitField, HiddenField, StringField, PasswordField, BooleanField, SelectField
+from wtforms import SubmitField, HiddenField, StringField, PasswordField, BooleanField, DateTimeField
 from wtforms.fields.numeric import IntegerField
 from wtforms.fields.simple import TextAreaField
 from wtforms.validators import DataRequired, EqualTo, NumberRange, ValidationError, Email, Optional, Length
@@ -26,3 +26,13 @@ class SignUpForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Submit')
+
+class EventForm(FlaskForm):
+    title = StringField('Title', validators=[DataRequired()])
+    description = TextAreaField('Description', validators=[Optional(), Length(max=500)])
+    start_date = DateTimeField('Start date (YYYY-MM-DD)', format='%Y-%m-%d', validators=[DataRequired()])
+    start_time = StringField('Start Time (HH:MM)', validators=[DataRequired(), Length(min=5, max=5)])
+    end_date = DateTimeField('End date (YYYY-MM-DD)', format='%Y-%m-%d', validators=[DataRequired()])
+    end_time = StringField('End Time (HH:MM))', validators=[DataRequired(), Length(min=5, max=5)])
+    location = StringField('Location', validators=[Optional(), Length(max=100)])
+    submit = SubmitField('Create Event')

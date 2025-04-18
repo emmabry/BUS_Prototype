@@ -4,6 +4,7 @@
     <div class="card shadow-sm mb-4">
         <div class="card-header bg-white">
             <div class="d-flex justify-content-between align-items-center">
+                <a href="{{ url_for('add_event') }}" class="btn btn-primary btn-sm">Add Event</a>
                 <h4 class="mb-0 fw-bold">{{ month_name }} {{ year }}</h4>
                 <div class="btn-group">
                     <a href="{{ url_for('calendar_view', year=prev_year, month=prev_month) }}" class="btn btn-outline-secondary btn-sm">
@@ -45,6 +46,15 @@
                                             {% for event in events[current_date] %}
                                                 <div class="small p-1 mb-1 rounded text-white" style="background-color: #82BFAB">
                                                     <small>{{ event.time }} - {{ event.title }}</small>
+                                                        <a class="btn p-0" href="{{ url_for('view_event', event_id=event.id) }}">
+                                                            <i class="bi bi-eye" style="color: white"></i>
+                                                        </a>
+                                                    <a class="btn p-0" href="{{ url_for('edit_event', event_id=event.id) }}">
+                                                        <i class="bi bi-pen" style="color: white"></i>
+                                                    </a>
+                                                    <a class="btn p-0" href="{{ url_for('delete_event', event_id=event.id) }}">
+                                                        <i class="bi bi-trash" style="color: white"></i>
+                                                    </a>
                                                 </div>
                                             {% endfor %}
                                         {% endif %}

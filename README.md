@@ -23,6 +23,7 @@ System description
 
 #### Design Pattern
 - Publish-Subscribe
+- Singleton pattern for database
 
 #### Relationships
 - Inheritance between User class and Student, Staff, ExternalProfessional classes
