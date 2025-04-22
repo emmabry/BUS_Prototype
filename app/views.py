@@ -202,6 +202,36 @@ def appointment_details(id):
     return render_template('appointment.html', appointment=appointment)
 
 
+@app.route('/book', methods=['POST', 'GET'])
+@login_required
+def book():
+    form = AppointmentForm()
+    advisors = ExternalAdvisor.query.all()
+    form.advisor_id.choices = [(a.id, f"{a.first_name} {a.last_name} ({a.organisation})") for a in advisors]
+
+    if form.validate_on_submit():
+        name = f"{current_user.first_name} {current_user.last_name}"
+        new_appointment = Appointment(
+            name = name,
+            email = current_user.email,
+            date = form.date.data,
+            time = form.time.data,
+            reason = form.reason.data,
+            advisor_id = form.advisor_id.data,
+            student_id = current_user.id
+        )
+        try:
+            db.session.add(new_appointment)
+            db.session.commit()
+            flash('Appointment booked successfully', 'success')
+            return redirect(url_for('appointments'))
+        except Exception as e:
+            flash(f'Error {e}', 'danger')
+            return redirect(url_for('book'))
+
+    return render_template('generic_form.html', title='Book Appointment', form=form)
+
+
 @app.route('/logout')
 def logout():
     logout_user()
