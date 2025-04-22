@@ -36,3 +36,10 @@ class EventForm(FlaskForm):
     end_time = StringField('End Time (HH:MM))', validators=[DataRequired(), Length(min=5, max=5)])
     location = StringField('Location', validators=[Optional(), Length(max=100)])
     submit = SubmitField('Create Event')
+
+class AppointmentForm(FlaskForm):
+    date = DateField('Date', validators=[DataRequired()])
+    time = TimeField('Time', validators=[DataRequired()])
+    reason = TextAreaField('Reason')
+    advisor_id = SelectField('Advisor', coerce=int, validators=[DataRequired()])
+    submit = SubmitField('Book Appointment')
