@@ -12,6 +12,7 @@ from urllib.parse import urlsplit
 import csv
 import io
 import datetime
+from app.notifications import get_upcoming_events
 
 
 @app.route("/")
@@ -27,6 +28,9 @@ def account():
 @app.route("/dashboard")
 @login_required
 def dashboard():
+    upcoming_messages = get_upcoming_events(current_user)
+    for message in upcoming_messages:
+        flash(message, 'info')
     return render_template('dashboard.html', title="Dashboard")
 
 @app.route('/signup', methods=['GET', 'POST'])
