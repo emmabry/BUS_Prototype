@@ -3,8 +3,8 @@ from werkzeug.security import generate_password_hash
 import calendar as cal
 import datetime as dt
 from app import app
-from app.models import Student, ExternalAdvisor, Staff, Appointment, Calendar, Event
-from app.forms import ChooseForm, LoginForm, SignUpForm, EventForm
+from app.models import Student, ExternalAdvisor, Staff, Appointment, Calendar, Event, WorkingHour
+from app.forms import ChooseForm, LoginForm, SignUpForm, EventForm, AppointmentForm
 from flask_login import current_user, login_user, logout_user, login_required, fresh_login_required
 import sqlalchemy as sa
 from app import db
@@ -209,18 +209,52 @@ def appointment_details(id):
 @login_required
 def book_appointment():
     form = AppointmentForm()
+
     advisors = ExternalAdvisor.query.all()
     form.advisor_id.choices = [(a.id, f"{a.first_name} {a.last_name} ({a.organisation})") for a in advisors]
 
     if form.validate_on_submit():
-        start_time = dt.datetime.combine(form.date.data, form.time.data)
-        end_time = start_time + dt.timedelta(minutes=30)
+        start_datetime = dt.datetime.combine(form.date.data, form.time.data)
+        end_datetime = start_datetime + dt.timedelta(minutes=30)
+
+        student_conflict = Event.query.filter(
+            Event.calendar_id == current_user.calendar.id,
+            Event.start_time < end_datetime,
+            Event.end_time > start_datetime
+        ).first()
+
+        if student_conflict:
+            flash('There is already and event on your calender during that time. Please choose another slot.', 'danger')
+            return render_template('generic_form.html', form = form)
 
         advisor = ExternalAdvisor.query.get(form.advisor_id.data)
+        advisor_calendar = advisor.calendar
+        advisor_conflict = Event.query.filter(
+            Event.calendar_id == advisor_calendar.id,
+            Event.start_time < end_datetime,
+            Event.end_time > start_datetime
+        ).first()
+
+        if advisor_conflict:
+            flash("The advisor already has an event during that time. Please choose another slot", 'danger')
+            return render_template('generic_form.html', form = form)
+
+        day_of_week = start_datetime.weekday()
+        working_hour = WorkingHour.query.filter_by(advisor_id=advisor.id, day_of_week = day_of_week).first()
+
+        if not working_hour:
+            flash('The advisor is not available on that day', 'danger')
+            return render_template('generic_form.html', form=form)
+
+        if not (working_hour.start_time <= start_datetime.time() < working_hour.end_time and
+        working_hour.start_time < end_datetime.time() <= working_hour.end_time):
+            flash("The selected time is outside the advisor's working hours", 'danger')
+            return render_template('generic_form.html', form = form)
+
         appt = Appointment(
             title = f"Appointment with {advisor.first_name} {advisor.last_name}",
-            start_time = start_time,
-            end_time = end_time,
+            start_time = start_datetime,
+            end_time = end_datetime,
             description = form.description.data,
             location = form.location.data,
             source = 'appointment',
