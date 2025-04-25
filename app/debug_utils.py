@@ -1,5 +1,5 @@
 from app import db
-from app.models import Student, ExternalAdvisor, Appointment
+from app.models import Student, ExternalAdvisor, Appointment, WorkingHour
 import datetime as dt
 
 
@@ -47,9 +47,21 @@ def reset_db():
         advisor = ExternalAdvisor(**a)
         advisor.set_password(pw)
         db.session.add(advisor)
+        db.session.flush()
+        advisor.create_default_calendar()
         advisor_objs.append(advisor)
 
     db.session.flush()
+
+    for advisor in advisor_objs:
+        for day in range(0, 5):
+            wh = WorkingHour(
+                advisor_id=advisor.id,
+                day_of_week = day,
+                start_time = dt.time(9, 0),
+                end_time = dt.time(17, 0)
+            )
+            db.session.add(wh)
 
     appointments = [
         Appointment(
@@ -61,7 +73,7 @@ def reset_db():
             location="Online",
             source="appointment",
             student_id=user_objs[0].id,
-            advisor_id=advisor_objs[0].id,
+            advisor_id=advisor_objs[1].id,
             calendar_id=user_objs[0].calendar.id
         ),
         Appointment(
