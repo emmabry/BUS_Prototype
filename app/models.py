@@ -82,10 +82,30 @@ class ExternalAdvisor(User):
         cascade='all, delete-orphan',
         foreign_keys='Appointment.advisor_id'
     )
+    working_hours: so.Mapped[list['WorkingHour']] = db.relationship(
+        'WorkingHour',
+        back_populates = 'advisor',
+        cascade = 'all, delete-orphan'
+    )
 
     __mapper_args__ = {
         'polymorphic_identity': 'external_advisors',
     }
+
+class WorkingHour(db.Model):
+    __tablename__ = 'working_hours'
+
+    id = db.Column(db.Integer, primary_key = True)
+    advisor_id = db.Column(db.Integer, db.ForeignKey('external_advisors.id'))
+
+    day_of_week = db.Column(db.Integer)
+    start_time = db.Column(db.Time)
+    end_time = db.Column(db.Time)
+
+    advisor = db.relationship('ExternalAdvisor', back_populates='working_hours')
+
+    def __repr__(self):
+        return f"<WorkingHour {self.advisor_id} - {self.day_of_week}: {self.start_time}-{self.end_time}>"
 
 class Calendar(db.Model):
     __tablename__ = 'calendars'
