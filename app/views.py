@@ -31,7 +31,9 @@ def dashboard():
     upcoming_messages = get_upcoming_events(current_user)
     for message in upcoming_messages:
         flash(message, 'info')
-    return render_template('dashboard.html', title="Dashboard")
+    q = db.select(Quiz).where(Quiz.user_id == current_user.id)
+    quiz = db.session.scalars(q).first()
+    return render_template('dashboard.html', title="Dashboard", quiz=quiz)
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -58,6 +60,7 @@ def start_quiz():
     return render_template('start_quiz.html', title="Start Quiz")
 
 @app.route('/quiz', methods=['GET', 'POST'])
+@login_required
 def quiz():
     form = QuizForm()
     if form.validate_on_submit():
@@ -65,6 +68,7 @@ def quiz():
         db.session.add(quiz_answers)
         db.session.commit()
         flash(f'Quiz submitted!', 'success')
+        return redirect(url_for('dashboard'))
     return render_template('quiz.html', title="Onboarding Quiz", form=form)
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -290,6 +294,9 @@ def logout():
     logout_user()
     return redirect(url_for('home'))
 
+@app.route('/help_centre')
+def help_centre():
+    return render_template('help_centre.html')
 
 # Error handlers
 # See: https://en.wikipedia.org/wiki/List_of_HTTP_status_codes

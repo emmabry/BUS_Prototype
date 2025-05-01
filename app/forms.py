@@ -52,22 +52,22 @@ class AppointmentForm(FlaskForm):
     submit = SubmitField('Book Appointment')
 
 class QuizForm(FlaskForm):
-    question1 = RadioField('1. I often feel anxious', choices=[(0, 'Never'), (1, 'Rarely'), (2, 'Sometimes'), (3, 'Often'), (4, 'Very Often')])
-    question2 = RadioField('2. I struggle with planning and staying organised', choices=[(0, 'Never'), (1, 'Rarely'), (2, 'Sometimes'), (3, 'Often'), (4, 'Very Often')])
-    question3 = RadioField('3. I often start coursework close to the deadline, and/or submit work late',
+    question1 = RadioField('1.  In general, I feel stressed and/or anxious', choices=[(0, 'Never'), (1, 'Rarely'), (2, 'Sometimes'), (3, 'Often'), (4, 'Very Often')])
+    question2 = RadioField('2.  I struggle with planning and staying organised', choices=[(0, 'Never'), (1, 'Rarely'), (2, 'Sometimes'), (3, 'Often'), (4, 'Very Often')])
+    question3 = RadioField('3.  I often start coursework close to the deadline, and/or submit work late',
                            choices=[(0, 'Never'), (1, 'Rarely'), (2, 'Sometimes'), (3, 'Often'), (4, 'Very Often')])
-    question4 = RadioField('4. I find it difficult to focus on my work',
+    question4 = RadioField('4.  I find it difficult to focus on my work',
                            choices=[(0, 'Never'), (1, 'Rarely'), (2, 'Sometimes'), (3, 'Often'), (4, 'Very Often')])
-    question5 = RadioField('5. I struggle to get started on tasks',
+    question5 = RadioField('5.  I struggle to get started on tasks',
                            choices=[(0, 'Never'), (1, 'Rarely'), (2, 'Sometimes'), (3, 'Often'), (4, 'Very Often')])
-    question6 = RadioField('6. It is difficult for me to remember tasks and events',
+    question6 = RadioField('6.  It is difficult for me to remember tasks and events',
                            choices=[(0, 'Never'), (1, 'Rarely'), (2, 'Sometimes'), (3, 'Often'), (4, 'Very Often')])
-    question7 = RadioField('7. I\'m struggling with finances',
+    question7 = RadioField('7.  I\'m struggling with finances',
                            choices=[(0, 'Never'), (1, 'Rarely'), (2, 'Sometimes'), (3, 'Often'), (4, 'Very Often')])
-    question8 = RadioField('8. It is difficult for me to relax',
+    question8 = RadioField('8.  It is difficult for me to relax',
                            choices=[(0, 'Never'), (1, 'Rarely'), (2, 'Sometimes'), (3, 'Often'), (4, 'Very Often')])
-    question9 = RadioField('9. I often feel overwhelmed',
+    question9 = RadioField('9.  I often feel overwhelmed',
                            choices=[(0, 'Never'), (1, 'Rarely'), (2, 'Sometimes'), (3, 'Often'), (4, 'Very Often')])
-    question10 = RadioField('10. My mood can change regularly between highs and lows',
+    question10 = RadioField('10.  My mood can change regularly between highs and lows',
                            choices=[(0, 'Never'), (1, 'Rarely'), (2, 'Sometimes'), (3, 'Often'), (4, 'Very Often')])
     submit = SubmitField('Submit')
