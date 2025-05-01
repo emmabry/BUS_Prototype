@@ -2,6 +2,13 @@
 
 {% block content %}
 <div class="container">
-    <p>Onboarding Quiz goes here</p>
+    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center" style="margin-bottom: 30px;">
+    <h2>Take our quiz for personalised recommendations for your wellbeing</h2>
+    </div>
+    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+
+        <a href="{{ url_for('signup') }}" class="btn btn-themed btn-lg px-4 gap-3">Take Quiz</a>
+        <a href="{{ url_for('dashboard') }}" class="btn btn-outline-secondary btn-lg px-4">Maybe Later</a>
+      </div>
   </div>
 {% endblock %}
