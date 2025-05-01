@@ -3,7 +3,7 @@ from werkzeug.security import generate_password_hash
 import calendar as cal
 import datetime as dt
 from app import app
-from app.models import Student, ExternalAdvisor, Staff, Appointment, Calendar, Event, WorkingHour
+from app.models import Student, ExternalAdvisor, Staff, Appointment, Calendar, Event, WorkingHour, Quiz
 from app.forms import ChooseForm, LoginForm, SignUpForm, EventForm, AppointmentForm, QuizForm
 from flask_login import current_user, login_user, logout_user, login_required, fresh_login_required
 import sqlalchemy as sa
@@ -60,6 +60,11 @@ def start_quiz():
 @app.route('/quiz', methods=['GET', 'POST'])
 def quiz():
     form = QuizForm()
+    if form.validate_on_submit():
+        quiz_answers = Quiz(response1=form.question1.data, response2=form.question2.data, response3=form.question3.data, response4=form.question4.data, response5=form.question5.data, response6=form.question6.data, response7=form.question7.data, response8=form.question8.data, response9=form.question9.data, response10=form.question10.data, student=current_user)
+        db.session.add(quiz_answers)
+        db.session.commit()
+        flash(f'Quiz submitted!', 'success')
     return render_template('quiz.html', title="Onboarding Quiz", form=form)
 
 @app.route('/login', methods=['GET', 'POST'])
