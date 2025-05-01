@@ -1,14 +1,11 @@
 {% extends "base.html" %}
+{% import "bootstrap_wtf.html" as wtf %}
 
 {% block content %}
+<h1>Wellbeing Quiz</h1>
+<p>Answer the questions below for personalised wellbeing recommendations!</p>
+<h4>How often do you relate to the following statements:</h4>
 <div class="container">
-    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center" style="margin-bottom: 30px;">
-    <h2>Take our quiz for personalised recommendations for your wellbeing</h2>
-    </div>
-    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-
-        <a href="{{ url_for('signup') }}" class="btn btn-themed btn-lg px-4 gap-3">Take Quiz</a>
-        <a href="{{ url_for('dashboard') }}" class="btn btn-outline-secondary btn-lg px-4">Maybe Later</a>
-      </div>
+    {{ wtf.quick_form(form, action="", method="post", id="", novalidate=True, autofocus=False) }}
   </div>
 {% endblock %}

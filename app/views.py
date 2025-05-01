@@ -4,7 +4,7 @@ import calendar as cal
 import datetime as dt
 from app import app
 from app.models import Student, ExternalAdvisor, Staff, Appointment, Calendar, Event, WorkingHour
-from app.forms import ChooseForm, LoginForm, SignUpForm, EventForm, AppointmentForm
+from app.forms import ChooseForm, LoginForm, SignUpForm, EventForm, AppointmentForm, QuizForm
 from flask_login import current_user, login_user, logout_user, login_required, fresh_login_required
 import sqlalchemy as sa
 from app import db
@@ -53,9 +53,15 @@ def signup():
         return redirect(url_for('quiz'))
     return render_template('signup.html', title="Sign Up", form=form)
 
+@app.route('/start_quiz', methods=['GET', 'POST'])
+def start_quiz():
+    return render_template('start_quiz.html', title="Start Quiz")
+
 @app.route('/quiz', methods=['GET', 'POST'])
 def quiz():
-    return render_template('quiz.html', title="Onboarding Quiz")
+    form = QuizForm()
+    return render_template('quiz.html', title="Onboarding Quiz", form=form)
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
