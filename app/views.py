@@ -55,7 +55,7 @@ def signup():
         return redirect(url_for('quiz'))
     return render_template('signup.html', title="Sign Up", form=form)
 
-@app.route('/start_quiz', methods=['GET', 'POST'])
+@app.route('/start_quiz')
 def start_quiz():
     return render_template('start_quiz.html', title="Start Quiz")
 

@@ -6,7 +6,7 @@
 </div>
 {% if quiz %}
     <div class="container">
-        <h2 class="mt-4 mb-5">Here are your personalised recommendations:</h2>
+        <p class="lead fs-1 mt-4 mb-4">Here are your personalised recommendations:</p>
         <h3 class="mb-4">Feature Recommendations</h3>
     <div class="d-flex gap-3 flex-wrap">
 
@@ -27,14 +27,15 @@
         <div class="card-body">
             <h5 class="card-title">Budgeting Tool</h5>
             <p class="card-text">Struggling with finances? Try our budgeting tool! </p>
-            <a href="{{ url_for('calendar_view') }}" class="btn btn-primary">Try it out</a>
+            <a href="{{ url_for('dashboard') }}" class="btn btn-primary">Try it out</a>
         </div>
         </div>
     {% endif %}
     </div>
     <h3 class="mt-5 mb-4">Article Recommendations</h3>
+    <div class="d-flex gap-3 flex-wrap">
     {% if quiz.response1 >= 2 or quiz.response8 >= 2 or quiz.response9 >= 2  or quiz.response10 >= 2 %}
-        <div class="card" style="width: 18rem;">
+        <div class="card mb-5" style="width: 18rem;">
         <img src="/static/UniSupport.svg" class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title">Relaxation Techniques</h5>
@@ -44,7 +45,7 @@
         </div>
     {% endif %}
     {% if quiz.response2 >= 2 or quiz.response3 >= 2 or quiz.response4 >= 2 or quiz.response5 >= 2 or quiz.response6 >= 2 %}
-        <div class="card" style="width: 18rem;">
+        <div class="card mb-5" style="width: 18rem;">
         <img src="/static/UniSupport.svg" class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title">Organisation & Planning</h5>
@@ -54,7 +55,7 @@
         </div>
     {% endif %}
     {% if quiz.response7 >= 2 %}
-        <div class="card" style="width: 18rem;">
+        <div class="card mb-5" style="width: 18rem;">
         <img src="/static/UniSupport.svg" class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title">Financial Management</h5>
@@ -64,7 +65,7 @@
         </div>
     {% endif %}
     {% if quiz.response10 >= 2 %}
-        <div class="card" style="width: 18rem;">
+        <div class="card mb-5" style="width: 18rem;">
         <img src="/static/UniSupport.svg" class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title">Emotional Regulation</h5>
@@ -74,7 +75,7 @@
         </div>
     {% endif %}
     {% if quiz.response1 >= 3 %}
-        <div class="card" style="width: 18rem;">
+        <div class="card mb-5" style="width: 18rem;">
         <img src="/static/UniSupport.svg" class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title">Managing Stress & Anxiety</h5>
@@ -84,10 +85,11 @@
         </div>
     {% endif %}
     </div>
+    </div>
 {% else %}
     <div class="container">
-        <div class="card">
-    <div class="card-body">
+        <div class="card text-center">
+    <div class="card-body" >
         <h5 class="card-title">Take our wellbeing quiz</h5>
         <p class="card-text">Take our quiz to receive personalised recommendations for your wellbeing</p>
         <a href="{{ url_for('start_quiz') }}" class="btn btn-primary">Take Now!</a>
