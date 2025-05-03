@@ -92,27 +92,6 @@ def reset_db():
     for appt in appointments:
         db.session.add(appt)
 
-        # AMY REMOVE // placeholder for upcoming event V
-
-    for appt in appointments:
-        db.session.add(appt)
-
-    now = dt.datetime.now()
-    john_soon_appt = Appointment(
-        email="john@email.com",
-        start_time=now + dt.timedelta(minutes=59),
-        end_time=now + dt.timedelta(minutes=89),
-        title="Test Reminder Appointment",
-        description="This is a test appointment to trigger notification.",
-        location="Online",
-        source="appointment",
-        student_id=user_objs[1].id,  # John
-        advisor_id=advisor_objs[0].id,
-        calendar_id=user_objs[1].calendar.id
-    )
-    db.session.add(john_soon_appt)
-
-    # AMY REMOVE ^
 
     db.session.commit()
 
