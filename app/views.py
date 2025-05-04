@@ -3,8 +3,8 @@ from werkzeug.security import generate_password_hash
 import calendar as cal
 import datetime as dt
 from app import app
-from app.models import Student, ExternalAdvisor, Staff, Appointment, Calendar, Event, WorkingHour
-from app.forms import ChooseForm, LoginForm, SignUpForm, EventForm, AppointmentForm
+from app.models import Student, ExternalAdvisor, Staff, Appointment, Calendar, Event, WorkingHour, Quiz
+from app.forms import ChooseForm, LoginForm, SignUpForm, EventForm, AppointmentForm, QuizForm
 from flask_login import current_user, login_user, logout_user, login_required, fresh_login_required
 import sqlalchemy as sa
 from app import db
@@ -31,7 +31,9 @@ def dashboard():
     upcoming_messages = get_upcoming_events(current_user)
     for message in upcoming_messages:
         flash(message, 'info')
-    return render_template('dashboard.html', title="Dashboard")
+    q = db.select(Quiz).where(Quiz.user_id == current_user.id)
+    quiz = db.session.scalars(q).first()
+    return render_template('dashboard.html', title="Dashboard", quiz=quiz)
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -53,9 +55,22 @@ def signup():
         return redirect(url_for('quiz'))
     return render_template('signup.html', title="Sign Up", form=form)
 
+@app.route('/start_quiz')
+def start_quiz():
+    return render_template('start_quiz.html', title="Start Quiz")
+
 @app.route('/quiz', methods=['GET', 'POST'])
+@login_required
 def quiz():
-    return render_template('quiz.html', title="Onboarding Quiz")
+    form = QuizForm()
+    if form.validate_on_submit():
+        quiz_answers = Quiz(response1=form.question1.data, response2=form.question2.data, response3=form.question3.data, response4=form.question4.data, response5=form.question5.data, response6=form.question6.data, response7=form.question7.data, response8=form.question8.data, response9=form.question9.data, response10=form.question10.data, student=current_user)
+        db.session.add(quiz_answers)
+        db.session.commit()
+        flash(f'Quiz submitted!', 'success')
+        return redirect(url_for('dashboard'))
+    return render_template('quiz.html', title="Onboarding Quiz", form=form)
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
@@ -279,6 +294,9 @@ def logout():
     logout_user()
     return redirect(url_for('home'))
 
+@app.route('/help_centre')
+def help_centre():
+    return render_template('help_centre.html')
 
 # Error handlers
 # See: https://en.wikipedia.org/wiki/List_of_HTTP_status_codes

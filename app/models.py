@@ -56,6 +56,10 @@ class Student(User):
         cascade='all, delete-orphan',
         foreign_keys='Appointment.student_id'
     )
+    quiz: so.Mapped[Optional['Quiz']] = relationship(
+        back_populates='student',
+        cascade='all, delete-orphan',
+    )
     __mapper_args__ = {
         'polymorphic_identity': 'student',
     }
@@ -229,3 +233,18 @@ class Appointment(Event):
 @login.user_loader
 def load_user(id):
     return db.session.get(User, int(id))
+
+class Quiz(db.Model):
+    __tablename__ = 'quiz'
+    user_id: so.Mapped[int] = so.mapped_column(ForeignKey('students.id'), primary_key=True)
+    student: so.Mapped['Student'] = relationship(back_populates='quiz')
+    response1: so.Mapped[int] = so.mapped_column()
+    response2: so.Mapped[int] = so.mapped_column()
+    response3: so.Mapped[int] = so.mapped_column()
+    response4: so.Mapped[int] = so.mapped_column()
+    response5: so.Mapped[int] = so.mapped_column()
+    response6: so.Mapped[int] = so.mapped_column()
+    response7: so.Mapped[int] = so.mapped_column()
+    response8: so.Mapped[int] = so.mapped_column()
+    response9: so.Mapped[int] = so.mapped_column()
+    response10: so.Mapped[int] = so.mapped_column()
