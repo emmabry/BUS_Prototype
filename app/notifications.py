@@ -20,3 +20,4 @@ def get_upcoming_events(user):
     notifications = [f"Reminder: upcoming event '{event.title}' at {event.start_time.strftime('%H:%M')}"
                      for event in events]
     return notifications
+
