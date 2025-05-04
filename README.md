@@ -33,3 +33,10 @@ System description
 ### Test cases
 
 ## Contribution
+
+| Student Name & ID | Contribution (%) | Key Contributions / Tasks Completed | Comments (if any) | Signature |
+|-------------------|------------------|-------------------------------------|-------------------|-----------|
+| [Student Name]    | [X%]             | [Task description]                  | [Comments]        | [Signature] |
+| [Student Name]    | [X%]             | [Task description]                  | [Comments]        | [Signature] |
+| [Student Name]    | [X%]             | [Task description]                  | [Comments]        | [Signature] |
+| [Student Name]    | [X%]             | [Task description]                  | [Comments]        | [Signature] |
