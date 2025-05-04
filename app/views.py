@@ -83,10 +83,7 @@ def login():
             flash('Invalid email or password', 'danger')
             return redirect(url_for('login'))
         login_user(user, remember=form.remember_me.data)
-        next_page = request.args.get('next')
-        if not next_page or urlsplit(next_page).netloc != '':
-            next_page = url_for('home')
-        return redirect(next_page)
+        return redirect(url_for('dashboard'))
     return render_template('generic_form.html', title='Sign In', form=form)
 
 

@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta
-
+from app.models import Event
 from sqlalchemy import event
 
 
@@ -9,7 +9,6 @@ class Subscriber:
 
 
 def get_upcoming_events(user):
-    from app.models import Event
     now = datetime.now()
     one_hour_later = now + timedelta(hours=1)
 
