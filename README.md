@@ -43,7 +43,6 @@ System description
 - Dashboard
 - Quiz
 - Appointment booking
-- Budgeting tool
 
 #### Design Pattern
 - Publish-Subscribe
