@@ -4,6 +4,12 @@ System description
 
 ## Step-by-step instructions
 
+**Running the application locally**
+1. In the terminal, call 'flask shell'.
+2. Inside the flask shell, call 'reset_db()' in order to populate the database.
+3. Run flask to start the program.
+4. To log in, use any of the test users in debug_utils.py
+
 **Appointment Viewing and Booking**
 1.	Click on the ‘Appointment’ tab on the navigation bar at the top. This will display a table with all upcoming appointments for the user, including the advisor’s name, data, time and location.
     - Clicking on the ‘View Details’ button will display all other information about the appointment that was not displayed previously. This includes the advisor’s organisation and the reason for the appointment.
@@ -26,6 +32,18 @@ System description
           - Select a ‘location’ from the drop-down list
           - Click ‘Book Appointment’. A message will appear, stating that the advisor is unavailable on that day.
 
+3. Once an appointment is booked, this will also automatically pull through to the calendar.
+
+**Calendar**
+1. After navigating to the calendar page (/calendar), click the blue 'Add Event' button on the left to create an event, and fill in the form with the event details.
+2. Once an event is created, you will be redirected back to the calendar. You can click on the eye symbol to the right of the event to open up the event details.
+3. To edit an event, you can click the pen symbol to the right of the event.
+4. To delete an event, you can click the trashcan symbol to the right of the event.
+5. On the top right hand side of the event page, you can navigate through the calendar with the 'previous', 'today', and 'next' buttons.
+
+**Quiz and Dashboard**
+1. Upon logging in for the first time, the user will be prompted to take an onboarding quiz. This will gather data on what the user struggles the most with.
+2. After completing the onboarding quiz, the user will be redirected to the dashboard, where they will have personalised feature/article recommendations based on the onboarding quiz results.
 
 
 ## Languages & Frameworks Used
@@ -56,8 +74,8 @@ On the Appointments page the user can book a new appointment with an advisor and
 - Quiz
 - Appointment booking
 
-#### Design Pattern
-- Publish-Subscribe
+#### Design Patterns
+- Publish-Subscribe pattern for calendar notifications
 - Singleton pattern for database
 
 #### Relationships
@@ -70,8 +88,8 @@ On the Appointments page the user can book a new appointment with an advisor and
 
 | Student Name & ID             | Contribution (%) | Key Contributions / Tasks Completed                                                                                                                             | Comments (if any) | Signature    |
 |-------------------------------|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------|--------------|
-| Emma Bryan - 2647065          | 25%              | [Task description]                                                                                                                                              | [Comments]        | [Signature]  |
-| Martyna Ofiara - 2204418      | 25%              | [Task description]                                                                                                                                              | [Comments]        | [Signature]  |
-| Amy Baker - 2720905           | 25%              | [Task description]                                                                                                                                              | [Comments]        | [Signature]  |
+| Emma Bryan - 2647065          | 25%              | Implemented calendar functionality, set up database inheritance & aggregation, set up project structure, walkthrough video.                                     |                   | E Bryan      |
+| Martyna Ofiara - 2204418      | 25%              | Implemented appointment booking functionality, set up appointment classes in database                                                                           | [Comments]        | [Signature]  |
+| Amy Baker - 2720905           | 25%              | Implemented Publish-Subscribe pattern for calendar notifications, implemented positive and negative test cases                                                  | [Comments]        | [Signature]  |
 | Rosemary Burningham - 2001897 | 25%              | Onboarding quiz implementation and recommendation feature on dashboard, README document system description, implemented functionalities summary and commit logs |                   | R Burningham |
 | Humna Arooj Farooq - 2331550  | 0%               |                                                                                                                                                                 |                   |              |
