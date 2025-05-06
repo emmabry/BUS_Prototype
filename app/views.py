@@ -33,7 +33,25 @@ def dashboard():
         flash(message, 'info')
     q = db.select(Quiz).where(Quiz.user_id == current_user.id)
     quiz = db.session.scalars(q).first()
-    return render_template('dashboard.html', title="Dashboard", quiz=quiz)
+    if quiz:
+        quiz_responses = [
+            quiz.response1,
+            quiz.response2,
+            quiz.response3,
+            quiz.response4,
+            quiz.response5,
+            quiz.response6,
+            quiz.response7,
+            quiz.response8,
+            quiz.response9,
+            quiz.response10
+        ]
+
+        all_responses_under_three = all(response < 3 for response in quiz_responses)
+    else:
+        all_responses_under_three = False
+
+    return render_template('dashboard.html', title="Dashboard", quiz=quiz, all_responses_under_three=all_responses_under_three)
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():

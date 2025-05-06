@@ -15,7 +15,7 @@
         <img src="/static/UniSupport.svg" class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title">Calendar Tool</h5>
-            <p class="card-text">Our calendar tool helps you to keep organised and stay on track!</p>
+            <p class="card-text">Our calendar tool helps you to keep organised and stay on track! Comes with notifications to give you a reminder!</p>
             <a href="{{ url_for('calendar_view') }}" class="btn btn-primary">Try it out</a>
         </div>
         </div>
@@ -27,6 +27,16 @@
         <div class="card-body">
             <h5 class="card-title">Budgeting Tool</h5>
             <p class="card-text">Struggling with finances? Try our budgeting tool! </p>
+            <a href="{{ url_for('dashboard') }}" class="btn btn-primary">Try it out</a>
+        </div>
+        </div>
+    {% endif %}
+    {% if all_responses_under_three %}
+        <div class="card" style="width: 18rem;">
+        <img src="/static/UniSupport.svg" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Calendar Tool</h5>
+            <p class="card-text">Stay organised with our calendar tool! We'll send you a notification 1 hour before each event! </p>
             <a href="{{ url_for('dashboard') }}" class="btn btn-primary">Try it out</a>
         </div>
         </div>
@@ -81,6 +91,16 @@
             <h5 class="card-title">Managing Stress & Anxiety</h5>
             <p class="card-text">Stressed and/or anxious? Why not take a look at our articles on stress and anxiety management?</p>
             <a href="{{ url_for('help_centre') }}" class="btn btn-primary">Read now</a>
+        </div>
+        </div>
+    {% endif %}
+    {% if all_responses_under_three %}
+        <div class="card mb-5" style="width: 18rem;">
+        <img src="/static/UniSupport.svg" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Help Centre</h5>
+            <p class="card-text">You can find articles on various topics in our Help Centre - from relaxation tips to help managing your finances and day!</p>
+            <a href="{{ url_for('help_centre') }}" class="btn btn-primary">Check it out!</a>
         </div>
         </div>
     {% endif %}
