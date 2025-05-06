@@ -81,13 +81,39 @@ def start_quiz():
 @login_required
 def quiz():
     form = QuizForm()
+    q = db.select(Quiz).where(Quiz.user_id == current_user.id)
+    quiz = db.session.scalars(q).first()
     if form.validate_on_submit():
-        quiz_answers = Quiz(response1=form.question1.data, response2=form.question2.data, response3=form.question3.data, response4=form.question4.data, response5=form.question5.data, response6=form.question6.data, response7=form.question7.data, response8=form.question8.data, response9=form.question9.data, response10=form.question10.data, student=current_user)
-        db.session.add(quiz_answers)
+        if quiz:
+            quiz.response1 = form.question1.data
+            quiz.response2 = form.question2.data
+            quiz.response3 = form.question3.data
+            quiz.response4 = form.question4.data
+            quiz.response5 = form.question5.data
+            quiz.response6 = form.question6.data
+            quiz.response7 = form.question7.data
+            quiz.response8 = form.question8.data
+            quiz.response9 = form.question9.data
+            quiz.response10 = form.question10.data
+        else:
+            quiz_answers = Quiz(
+                response1=form.question1.data,
+                response2=form.question2.data,
+                response3=form.question3.data,
+                response4=form.question4.data,
+                response5=form.question5.data,
+                response6=form.question6.data,
+                response7=form.question7.data,
+                response8=form.question8.data,
+                response9=form.question9.data,
+                response10=form.question10.data,
+                student=current_user
+            )
+            db.session.add(quiz_answers)
         db.session.commit()
         flash(f'Quiz submitted!', 'success')
         return redirect(url_for('dashboard'))
-    return render_template('quiz.html', title="Onboarding Quiz", form=form)
+    return render_template('quiz.html', title="Onboarding Quiz", form=form, quiz=quiz)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

@@ -5,6 +5,15 @@
     <h1>Hello, {{ current_user.first_name }}</h1>
 </div>
 {% if quiz %}
+    <div class="container mt-3">
+        <div class="card text-center">
+    <div class="card-body" >
+        <h5 class="card-title">Retake our wellbeing quiz</h5>
+        <p class="card-text">Want updated recommendations? Retake our wellbeing quiz!</p>
+        <a href="{{ url_for('start_quiz') }}" class="btn btn-primary">Retake Now!</a>
+    </div>
+        </div>
+    </div>
     <div class="container">
         <p class="lead fs-1 mt-4 mb-4">Here are your personalised recommendations:</p>
         <h3 class="mb-4">Feature Recommendations</h3>
