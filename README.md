@@ -1,14 +1,22 @@
 # UniSupport
 
-System description
+UniSupport is a web application designed to streamline academic support through our core features: a personalised dashboard, a calendar system, and appointment booking with university advisors. 
+
+Upon logging in for the first time, users complete an onboarding quiz that identifies their support needs. Based on quiz responses, the dashboard recommends relevant features and academic resources. The appointment system allows students to view, book, and manage meetings with advisors. The calendar feature enables users to create, edit, and delete custom events. It also provides reminders for any scheduled event.
+
+The system is built using Python (Flask) on the backend with HTML, CSS, and Bootstrap for the frontend. Inheritance and aggregation are used in the database design to manage different user roles and event types.
 
 ## Step-by-step instructions
 
 **Running the application locally**
-1. In the terminal, call 'flask shell'.
-2. Inside the flask shell, call 'reset_db()' in order to populate the database.
-3. Run flask to start the program.
-4. To log in, use any of the test users in debug_utils.py
+1. Unzip the file and open the folder in PyCharm.
+2. In Pycharm, go to Run > Edit Configurations
+3. Select module > flask and set the script parameters to 'run'.
+![Screenshot of Quiz App](/app/static/screenshot.png)
+4. In the terminal, call 'flask shell'.
+5. Inside the flask shell, call 'reset_db()' in order to populate the database.
+6. Run flask to start the program. This will run on http://127.0.0.1:5000.
+7. To log in, use any of the test users in debug_utils.py
 
 **Appointment Viewing and Booking**
 1.	Click on the ‘Appointment’ tab on the navigation bar at the top. This will display a table with all upcoming appointments for the user, including the advisor’s name, data, time and location.
@@ -50,7 +58,6 @@ System description
 
 - Python
 - Flask
-- JavaScript
 - HTML/CSS
 - Bootstrap
 
