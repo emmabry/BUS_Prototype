@@ -83,7 +83,6 @@ On the Appointments page the user can book a new appointment with an advisor and
 - Inheritance between Event class and Appointment class
 - Aggregation between Calendar class and Event class
 
-
 ## Contribution
 
 | Student Name & ID             | Contribution (%) | Key Contributions / Tasks Completed                                                                                                                             | Comments (if any) | Signature    |
