@@ -69,9 +69,10 @@ On the Appointments page the user can book a new appointment with an advisor and
 
 ## Contribution
 
-| Student Name & ID | Contribution (%) | Key Contributions / Tasks Completed | Comments (if any) | Signature   |
-|-------------------|------------------|-------------------------------------|-------------------|-------------|
-| [Student Name]    | [X%]             | [Task description]                  | [Comments]        | [Signature] |
-| [Student Name]    | [X%]             | [Task description]                  | [Comments]        | [Signature] |
-| [Student Name]    | [X%]             | [Task description]                  | [Comments]        | [Signature] |
-|                   |                  |                                     |                   |             |
+| Student Name & ID             | Contribution (%) | Key Contributions / Tasks Completed                                                                                                                             | Comments (if any) | Signature    |
+|-------------------------------|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------|--------------|
+| Emma Bryan - 2647065          | 25%              | [Task description]                                                                                                                                              | [Comments]        | [Signature]  |
+| Martyna Ofiara - 2204418      | 25%              | [Task description]                                                                                                                                              | [Comments]        | [Signature]  |
+| Amy Baker - 2720905           | 25%              | [Task description]                                                                                                                                              | [Comments]        | [Signature]  |
+| Rosemary Burningham - 2001897 | 25%              | Onboarding quiz implementation and recommendation feature on dashboard, README document system description, implemented functionalities summary and commit logs |                   | R Burningham |
+| Humna Arooj Farooq - 2331550  | 0%               |                                                                                                                                                                 |                   |              |
