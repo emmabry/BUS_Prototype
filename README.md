@@ -62,7 +62,7 @@ The dashboard shows personalised feature recommendations based on the user answe
 
 Calendar: 
 
-Users can add events to their calendar, where they can input a title, a description, location and start and end times and dates. Based on the end date and time, the user will receive a notification reminder 1 hour before the event.
+Users can add events to their calendar, where they can input a title, a description, location and start and end times and dates. Based on the end date and time, the user will receive a notification reminder 1 hour before the event. For this feature, we primarily used Python's calendar module to assist us in creating it.
 
 Appointment Booking: 
 

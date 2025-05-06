@@ -15,6 +15,7 @@ import datetime
 from app.notifications import get_upcoming_events
 
 
+# UniSupport landing page
 @app.route("/")
 def home():
     return render_template('home.html', title="UniSupport")
@@ -28,9 +29,11 @@ def account():
 @app.route("/dashboard")
 @login_required
 def dashboard():
+    # If there is an upcoming event, a notification for this is displayed
     upcoming_messages = get_upcoming_events(current_user)
     for message in upcoming_messages:
         flash(message, 'info')
+    # Get users quiz results
     q = db.select(Quiz).where(Quiz.user_id == current_user.id)
     quiz = db.session.scalars(q).first()
     if quiz:
@@ -46,17 +49,17 @@ def dashboard():
             quiz.response9,
             quiz.response10
         ]
-
+    # If a user scored above 3 on a question, a tailored recommendation is displayed
         all_responses_under_three = all(response < 3 for response in quiz_responses)
     else:
         all_responses_under_three = False
-
     return render_template('dashboard.html', title="Dashboard", quiz=quiz, all_responses_under_three=all_responses_under_three)
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     form = SignUpForm()
     if form.validate_on_submit():
+        # Create a new student user in database
         user = Student(
             first_name=form.first_name.data,
             last_name=form.last_name.data,
@@ -68,8 +71,10 @@ def signup():
         db.session.flush()
         user.create_default_calendar()
         db.session.commit()
+        # Log in user
         login_user(user)
         flash('Your account has been created!', 'success')
+        # Prompt new user to take onboarding quiz
         return redirect(url_for('quiz'))
     return render_template('signup.html', title="Sign Up", form=form)
 
@@ -85,6 +90,7 @@ def quiz():
     quiz = db.session.scalars(q).first()
     if form.validate_on_submit():
         if quiz:
+            # If user has already submitted quiz, update their answers
             quiz.response1 = form.question1.data
             quiz.response2 = form.question2.data
             quiz.response3 = form.question3.data
@@ -96,6 +102,7 @@ def quiz():
             quiz.response9 = form.question9.data
             quiz.response10 = form.question10.data
         else:
+            # If first time, create a new entry in the quiz table with the users answers
             quiz_answers = Quiz(
                 response1=form.question1.data,
                 response2=form.question2.data,
@@ -121,6 +128,7 @@ def login():
         return redirect(url_for('dashboard'))
     form = LoginForm()
     if form.validate_on_submit():
+        # Check user email is in database
         user = db.session.scalar(
             sa.select(Student).where(Student.email == form.email.data))
         if user is None or not user.check_password(form.password.data):
@@ -133,14 +141,17 @@ def login():
 
 @app.route('/calendar')
 def calendar_view():
+    # Get current year and month
     year = int(request.args.get('year', dt.datetime.now().year))
     month = int(request.args.get('month', dt.datetime.now().month))
 
-    cal_obj = cal.monthcalendar(year, month)
+    # Initiate calendar object and get calendar data from DB
+    calendar = cal.monthcalendar(year, month)
     month_name = cal.month_name[month]
-    calendar = db.session.scalar(sa.select(Calendar).where(Calendar.owner_id == current_user.id))
+    calendar_data = db.session.scalar(sa.select(Calendar).where(Calendar.owner_id == current_user.id))
 
-    events = calendar.get_events_by_month(year, month)
+    # Get event data for current month
+    events = calendar_data.get_events_by_month(year, month)
 
     events_by_date = {}
     for event in events:
@@ -153,12 +164,14 @@ def calendar_view():
             'time': event.start_time.strftime('%H:%M')
         })
 
+    # Fix calendar so that it loops back to the previous December if clicking backwards from January
     prev_month = month - 1
     prev_year = year
     if prev_month == 0:
         prev_month = 12
         prev_year -= 1
 
+    # Fix calendar so it correctly goes to the following year after December
     next_month = month + 1
     next_year = year
     if next_month == 13:
@@ -170,7 +183,7 @@ def calendar_view():
         year=year,
         month=month,
         month_name=month_name,
-        calendar=cal_obj,
+        calendar=calendar,
         events=events_by_date,
         prev_month=prev_month,
         prev_year=prev_year,
@@ -184,6 +197,7 @@ def calendar_view():
 @app.route('/calendar/view/<int:event_id>', methods=['GET', 'POST'])
 @login_required
 def view_event(event_id):
+    # Get event by id from database
     event = db.session.query(Event).get(event_id)
     return render_template('event.html', event=event, title="View Event")
 
@@ -202,6 +216,7 @@ def edit_event(event_id):
             location=event.location
         )
         if form.validate_on_submit():
+            # Update event data with new form data
             event.title = form.title.data
             event.description = form.description.data
             event.start_time = dt.datetime.combine(form.start_date.data, dt.time.fromisoformat(form.start_time.data))
@@ -217,6 +232,7 @@ def edit_event(event_id):
 def delete_event(event_id):
     event = db.session.query(Event).get(event_id)
     if event:
+        # Remove event from database
         db.session.delete(event)
         db.session.commit()
         flash('Event deleted successfully!', 'success')
@@ -229,6 +245,7 @@ def delete_event(event_id):
 def add_event():
     form = EventForm()
     if form.validate_on_submit():
+        # Add new event to database
         start_time = form.start_time.data
         hours, minutes = map(int, start_time.split(':'))
         start_time = dt.datetime.combine(form.start_date.data, dt.time(hours, minutes))
@@ -252,12 +269,14 @@ def add_event():
 @app.route('/appointments', methods = ['POST', 'GET'])
 @login_required
 def appointments():
+    # Get users current appointments from database
     user_appointments = Appointment.query.filter_by(student_id=current_user.id).order_by(Appointment.start_time).all()
     return render_template('appointments.html', appointments=user_appointments)
 
 
 @app.route('/appointment_details/<int:id>')
 def appointment_details(id):
+    # Get appointment from database using id
     appointment = db.session.get(Appointment, id)
     return render_template('appointment.html', appointment=appointment)
 
@@ -265,14 +284,15 @@ def appointment_details(id):
 @login_required
 def book_appointment():
     form = AppointmentForm()
-
     advisors = ExternalAdvisor.query.all()
+    # Display advisors to choose for appointment
     form.advisor_id.choices = [(a.id, f"{a.first_name} {a.last_name} ({a.organisation})") for a in advisors]
 
     if form.validate_on_submit():
         start_datetime = dt.datetime.combine(form.date.data, form.time.data)
         end_datetime = start_datetime + dt.timedelta(minutes=30)
 
+        # Check if there is a preexisting event which overlaps with appointment
         student_conflict = Event.query.filter(
             Event.calendar_id == current_user.calendar.id,
             Event.start_time < end_datetime,
@@ -295,6 +315,7 @@ def book_appointment():
             flash("The advisor already has an event during that time. Please choose another slot", 'danger')
             return render_template('generic_form.html', form = form)
 
+        # Check if advisor has availability
         day_of_week = start_datetime.weekday()
         working_hour = WorkingHour.query.filter_by(advisor_id=advisor.id, day_of_week = day_of_week).first()
 
@@ -307,6 +328,7 @@ def book_appointment():
             flash("The selected time is outside the advisor's working hours", 'danger')
             return render_template('generic_form.html', form = form)
 
+        # Add new appointment to database
         appt = Appointment(
             title = f"Appointment with {advisor.first_name} {advisor.last_name}",
             start_time = start_datetime,
