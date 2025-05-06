@@ -38,6 +38,18 @@ System description
 
 ## Implemented Functionalities
 
+Dashboard & Quiz: 
+
+The dashboard shows personalised feature recommendations based on the user answers to an onboarding quiz, which are stored in a database table. If the user has not taken the onboarding quiz, the dashboard will show a card prompting them to take the quiz. Otherwise, it will show feature recommendations and article recommendations based on quiz answers.
+
+Calendar: 
+
+Users can add events to their calendar, where they can input a title, a description, location and start and end times and dates. Based on the end date and time, the user will receive a notification reminder 1 hour before the event.
+
+Appointment Booking: 
+
+On the Appointments page the user can book a new appointment with an advisor and set a date, time and appointment location. This feature is linked to the calendar tool, where booked appointments will automatically show on the calendar.
+
 #### Features
 - Calendar
 - Dashboard
@@ -57,8 +69,9 @@ System description
 
 ## Contribution
 
-| Student Name & ID | Contribution (%) | Key Contributions / Tasks Completed | Comments (if any) | Signature |
-|-------------------|------------------|-------------------------------------|-------------------|-----------|
+| Student Name & ID | Contribution (%) | Key Contributions / Tasks Completed | Comments (if any) | Signature   |
+|-------------------|------------------|-------------------------------------|-------------------|-------------|
 | [Student Name]    | [X%]             | [Task description]                  | [Comments]        | [Signature] |
 | [Student Name]    | [X%]             | [Task description]                  | [Comments]        | [Signature] |
 | [Student Name]    | [X%]             | [Task description]                  | [Comments]        | [Signature] |
+|                   |                  |                                     |                   |             |
