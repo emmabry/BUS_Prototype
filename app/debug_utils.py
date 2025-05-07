@@ -2,7 +2,6 @@ from app import db
 from app.models import Student, ExternalAdvisor, Appointment, WorkingHour
 import datetime as dt
 
-
 def reset_db():
     db.drop_all()
     db.create_all()
