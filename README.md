@@ -10,13 +10,14 @@ The system is built using Python (Flask) on the backend with HTML, CSS, and Boot
 
 **Running the application locally**
 1. Unzip the file and open the folder in PyCharm.
-2. In Pycharm, go to Run > Edit Configurations
-3. Select module > flask and set the script parameters to 'run'.
+2. Install the dependencies using pip and requirements.txt
+3. In Pycharm, go to Run > Edit Configurations
+4. Select module > flask and set the script parameters to 'run'.
 ![Screenshot of Quiz App](/app/static/screenshot.png)
-4. In the terminal, call 'flask shell'.
-5. Inside the flask shell, call 'reset_db()' in order to populate the database.
-6. Run flask to start the program. This will run on http://127.0.0.1:5000.
-7. To log in, use any of the test users in debug_utils.py
+5. In the terminal, call 'flask shell'.
+6. Inside the flask shell, call 'reset_db()' in order to populate the database.
+7. Run flask to start the program. This will run on http://127.0.0.1:5000.
+8. To log in, use any of the test users in debug_utils.py
 
 **Appointment Viewing and Booking**
 1.	Click on the ‘Appointment’ tab on the navigation bar at the top. This will display a table with all upcoming appointments for the user, including the advisor’s name, data, time and location.
@@ -95,7 +96,7 @@ On the Appointments page the user can book a new appointment with an advisor and
 | Student Name & ID             | Contribution (%) | Key Contributions / Tasks Completed                                                                                                                             | Comments (if any) | Signature    |
 |-------------------------------|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------|--------------|
 | Emma Bryan - 2647065          | 25%              | Implemented calendar functionality, set up database inheritance & aggregation, set up project structure, walkthrough video.                                     |                   | E Bryan      |
-| Martyna Ofiara - 2204418      | 25%              | Implemented appointment booking functionality, set up appointment classes in database                                                                           |         | M Ofiara  |
-| Amy Baker - 2720905           | 25%              | Implemented Publish-Subscribe pattern for calendar notifications, implemented positive and negative test cases                                                  | [Comments]        | [Signature]  |
+| Martyna Ofiara - 2204418      | 25%              | Implemented appointment booking functionality, set up appointment classes in database                                                                           |                   | M Ofiara     |
+| Amy Baker - 2720905           | 25%              | Implemented Publish-Subscribe pattern for calendar notifications, implemented positive and negative test cases                                                  |                   | A Baker      |
 | Rosemary Burningham - 2001897 | 25%              | Onboarding quiz implementation and recommendation feature on dashboard, README document system description, implemented functionalities summary and commit logs |                   | R Burningham |
 | Humna Arooj Farooq - 2331550  | 0%               |                                                                                                                                                                 |                   |              |
