@@ -140,6 +140,7 @@ def login():
 
 
 @app.route('/calendar')
+@login_required
 def calendar_view():
     # Get current year and month
     year = int(request.args.get('year', dt.datetime.now().year))
