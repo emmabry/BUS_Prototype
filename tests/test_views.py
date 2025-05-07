@@ -34,7 +34,8 @@ def test_signup_positive(setup_db):
         response = client.post('/signup', data={
             'first_name': 'amy',
             'last_name': 'baker',
-            'university': 'test uni',
+            # 'university': 'test uni',
+            'course': 'test',
             'email': 'amy@birmingham.com',
             'password': 'test123',
 'confirm_password': 'test123',
@@ -48,7 +49,8 @@ def test_signup_negative(setup_db):
         response = client.post('/signup', data={
             'first_name': 'amy',
             'last_name': 'baker',
-            'university': '',
+            # 'university': '',
+            'course': '',
             'email': 'amy@birmingham.com',
             'password': 'test123',
             'confirm_password': 'test123wrong',
