@@ -63,7 +63,8 @@ def signup():
         user = Student(
             first_name=form.first_name.data,
             last_name=form.last_name.data,
-            university=form.university.data,
+            # university=form.university.data,
+            course=form.course.data,
             email=form.email.data,
             password_hash=generate_password_hash(form.password.data, method='pbkdf2')
         )
