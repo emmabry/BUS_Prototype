@@ -1,68 +1,78 @@
-c9b229c - emma, Tue May 6 20:51:52 2025 +0100 : Update README.md
-83255b5 - emma, Tue May 6 20:37:03 2025 +0100 : Add code comments for clarity
-7132d44 - emma, Tue May 6 20:16:32 2025 +0100 : Update README
-2c938c4 - emma, Tue May 6 20:16:22 2025 +0100 : Update README
-8c57ecb - Emma Bryan, Tue May 6 19:59:52 2025 +0100 : Update README.md
-c1c8319 - Emma Bryan, Tue May 6 19:58:48 2025 +0100 : Merge pull request #21 from RosemarySB/master
-e313b90 - Rosie, Tue May 6 18:02:32 2025 +0100 : Implemented a retake option where existing quiz data is updated when the user retakes the quiz - also added retake card to user dashboard which links user to retake the quiz
-e7eda58 - Rosie, Tue May 6 17:28:16 2025 +0100 : Implemented default recommendation options in case of response to each quiz question all being under '3' (sometimes)
-7efb385 - Rosie, Tue May 6 16:57:16 2025 +0100 : Update to contribution section of README.md
-a295ee6 - Emma Bryan, Tue May 6 16:27:24 2025 +0100 : Merge pull request #20 from RosemarySB/master
-f0378ba - Rosie, Tue May 6 15:52:00 2025 +0100 : Added summaries of Implemented Functionalities to README.md & minor edit to contribution table format
-9bb9691 - emma, Mon May 5 13:55:14 2025 +0100 : Remove budget reference
-937c8a5 - emma, Sun May 4 12:29:43 2025 +0100 : Remove placeholder code
-d8da06f - emma, Sun May 4 12:29:17 2025 +0100 : Merge files
-1ecf4f8 - emma, Sun May 4 12:22:12 2025 +0100 : Add contribution table to readme template
-b9f5aec - emma, Sun May 4 12:21:35 2025 +0100 : Merge remote-tracking branch 'origin/master'
-c133a8f - emma, Sun May 4 12:21:24 2025 +0100 : Add contribution table to readme template
-3241fb2 - Emma Bryan, Sat May 3 19:02:17 2025 +0100 : Merge pull request #19 from amy-baker/notifications-test
-4030d93 - Amy Baker'git commit -m adding, Sat May 3 18:57:45 2025 +0100 : implement notifications testing
-5b20b99 - Martyna Ofiara, Sat May 3 14:40:24 2025 +0100 : Update README.md
-4985a6e - Emma Bryan, Fri May 2 17:28:00 2025 +0100 : Merge pull request #18 from RosemarySB/quiz
-8d16092 - Rosie, Fri May 2 01:24:56 2025 +0100 : Minor formatting edits to dashboard recommendations
-5027580 - Rosie, Fri May 2 00:49:42 2025 +0100 : Added dashboard recommendations and Help Centre placeholder page as well as a minor edit to QuizForm question wording
-061e157 - Rosie, Thu May 1 21:58:58 2025 +0100 : Added quiz database functionality to views.py
-6049058 - Rosie, Thu May 1 21:34:12 2025 +0100 : Added form to quiz html page and added start_quiz.html
-beab7df - Rosie, Thu May 1 21:05:27 2025 +0100 : Added quiz form
-7701f56 - Rosie, Thu May 1 18:41:43 2025 +0100 : Added Quiz results database and user interfact to begin quiz
-a3ccf30 - Martyna Ofiara, Fri Apr 25 14:52:44 2025 +0100 : Update views.py
-1428bb2 - Martyna Ofiara, Fri Apr 25 14:50:18 2025 +0100 : Update debug_utils.py
-fddbca1 - Martyna Ofiara, Fri Apr 25 14:48:19 2025 +0100 : Update models.py
-54b647a - Emma Bryan, Wed Apr 23 20:25:38 2025 +0100 : Merge pull request #17 from amy-baker/publish-subscribe-feature
-822b404 - Amy Baker'git commit -m adding, Wed Apr 23 20:23:22 2025 +0100 : initial notifications functionality
-721c1e5 - Emma Bryan, Tue Apr 22 17:37:50 2025 +0100 : Merge pull request #16 from mavayy/patch-14
-89e671b - Emma Bryan, Tue Apr 22 17:37:41 2025 +0100 : Merge pull request #15 from mavayy/patch-13
-93a0439 - Emma Bryan, Tue Apr 22 17:37:31 2025 +0100 : Merge pull request #14 from mavayy/patch-12
-6814713 - Emma Bryan, Tue Apr 22 17:37:18 2025 +0100 : Merge pull request #13 from mavayy/patch-11
-53049f9 - Martyna Ofiara, Tue Apr 22 17:37:07 2025 +0100 : Update appointment.html
-e6868c8 - Martyna Ofiara, Tue Apr 22 17:36:13 2025 +0100 : Update appointments.html
-c267866 - Martyna Ofiara, Tue Apr 22 17:34:51 2025 +0100 : Update forms.py
-56eee4f - Martyna Ofiara, Tue Apr 22 17:33:55 2025 +0100 : Update views.py
-177c7d6 - emma, Fri Apr 18 13:07:10 2025 +0100 : Add event delete/edit/view functionality
-84feeb9 - emma, Fri Apr 18 05:47:28 2025 +0100 : Add calendar CSS
-323f766 - emma, Fri Apr 18 05:37:14 2025 +0100 : Add README.md
-d62fa00 - emma, Thu Apr 17 16:47:39 2025 +0100 : fix bug in debug script where events weren't populating
-2912546 - emma, Thu Apr 17 16:39:47 2025 +0100 : update database structure to include: - Calendar->Event Aggregation - Event<-Appointment Inheritance
-da326a6 - Emma Bryan, Thu Apr 17 13:57:27 2025 +0100 : Merge pull request #10 from emmabry/calendar
-e5f4776 - emma, Thu Apr 17 13:57:05 2025 +0100 : add calendar
-2f32371 - emma, Thu Apr 17 13:56:56 2025 +0100 : add calendar
-34f1706 - emma, Thu Apr 17 12:16:35 2025 +0100 : add inheritance class structure to users
-e964cbd - Emma Bryan, Thu Apr 17 11:54:39 2025 +0100 : Merge pull request #8 from mavayy/patch-7
-fa5ac2f - Emma Bryan, Thu Apr 17 11:54:30 2025 +0100 : Merge pull request #7 from mavayy/patch-6
-de31f80 - Emma Bryan, Thu Apr 17 11:54:17 2025 +0100 : Merge pull request #9 from mavayy/patch-8
-bbca48f - Martyna Ofiara, Wed Apr 16 14:34:01 2025 +0100 : Create appointment.html
-e2e2f7e - Martyna Ofiara, Wed Apr 16 14:32:34 2025 +0100 : Update appointments.html
-882b1a1 - Martyna Ofiara, Wed Apr 16 14:29:44 2025 +0100 : Update views.py
-8e40ed1 - Emma Bryan, Wed Apr 16 09:30:34 2025 +0100 : Merge pull request #2 from mavayy/patch-1
-781e09f - Emma Bryan, Wed Apr 16 09:30:19 2025 +0100 : Merge pull request #4 from mavayy/patch-3
-495c984 - Emma Bryan, Wed Apr 16 09:30:04 2025 +0100 : Merge pull request #3 from mavayy/patch-2
-5638729 - Emma Bryan, Wed Apr 16 09:29:54 2025 +0100 : Merge pull request #5 from mavayy/patch-4
-54d6f12 - Emma Bryan, Wed Apr 16 09:29:43 2025 +0100 : Merge pull request #6 from mavayy/patch-5
-d99cb4d - mavayy, Tue Apr 15 16:30:43 2025 +0100 : Update debug_utils.py
-5ac2f81 - mavayy, Tue Apr 15 16:28:39 2025 +0100 : Create appointments.html
-de5ada8 - mavayy, Tue Apr 15 16:26:42 2025 +0100 : Update base.html
-39fc513 - mavayy, Tue Apr 15 16:24:03 2025 +0100 : Update models.py
-123a4c9 - mavayy, Tue Apr 15 16:18:39 2025 +0100 : Update views.py
-467ff6f - Emma Bryan, Mon Apr 14 13:57:38 2025 +0100 : Merge pull request #1 from emmabry/landing-page
-44bc17e - emma, Mon Apr 14 13:56:37 2025 +0100 : add signup & login functionality, add landing page & skeleton for dashboard & quiz
-0b7e6b0 - emma, Thu Apr 3 17:14:33 2025 +0100 : Initial commit
+66d8c1c - Rosie, Thu May 8 12:07:44 2025 : Minor README edit to contribution/relationships
+ba95ffa - Emma Bryan, Thu May 8 07:54:57 2025 : Merge pull request #23 from amy-baker/fix-signup
+48b3871 - Amy Baker'git commit -m adding, Wed May 7 22:07:02 2025 : update signup fields
+8834496 - Emma Bryan, Wed May 7 21:52:13 2025 : Merge pull request #22 from amy-baker/tests-login
+f675767 - amy-baker, Wed May 7 21:24:59 2025 : Update test_views.py
+2eefb8c - Amy Baker'git commit -m adding, Wed May 7 21:21:11 2025 : add test cases
+8f29631 - emma, Wed May 7 20:21:18 2025 : Add requirements.txt
+858a3c5 - emma, Wed May 7 14:50:39 2025 : Merge remote-tracking branch 'origin/master'
+0a3c559 - emma, Wed May 7 14:50:32 2025 : Add git logs
+4425fa5 - Martyna Ofiara, Wed May 7 10:01:49 2025 : Update README.md
+c9b229c - emma, Tue May 6 20:51:52 2025 : Update README.md
+83255b5 - emma, Tue May 6 20:37:03 2025 : Add code comments for clarity
+7132d44 - emma, Tue May 6 20:16:32 2025 : Update README
+2c938c4 - emma, Tue May 6 20:16:22 2025 : Update README
+8c57ecb - Emma Bryan, Tue May 6 19:59:52 2025 : Update README.md
+c1c8319 - Emma Bryan, Tue May 6 19:58:48 2025 : Merge pull request #21 from RosemarySB/master
+e313b90 - Rosie, Tue May 6 18:02:32 2025 : Implemented a retake option where existing quiz data is updated when the user retakes the quiz - also added retake card to user dashboard which links user to retake the quiz
+e7eda58 - Rosie, Tue May 6 17:28:16 2025 : Implemented default recommendation options in case of response to each quiz question all being under '3' (sometimes)
+7efb385 - Rosie, Tue May 6 16:57:16 2025 : Update to contribution section of README.md
+a295ee6 - Emma Bryan, Tue May 6 16:27:24 2025 : Merge pull request #20 from RosemarySB/master
+f0378ba - Rosie, Tue May 6 15:52:00 2025 : Added summaries of Implemented Functionalities to README.md & minor edit to contribution table format
+9bb9691 - emma, Mon May 5 13:55:14 2025 : Remove budget reference
+937c8a5 - emma, Sun May 4 12:29:43 2025 : Remove placeholder code
+d8da06f - emma, Sun May 4 12:29:17 2025 : Merge files
+1ecf4f8 - emma, Sun May 4 12:22:12 2025 : Add contribution table to readme template
+b9f5aec - emma, Sun May 4 12:21:35 2025 : Merge remote-tracking branch 'origin/master'
+c133a8f - emma, Sun May 4 12:21:24 2025 : Add contribution table to readme template
+3241fb2 - Emma Bryan, Sat May 3 19:02:17 2025 : Merge pull request #19 from amy-baker/notifications-test
+4030d93 - Amy Baker'git commit -m adding, Sat May 3 18:57:45 2025 : implement notifications testing
+5b20b99 - Martyna Ofiara, Sat May 3 14:40:24 2025 : Update README.md
+4985a6e - Emma Bryan, Fri May 2 17:28:00 2025 : Merge pull request #18 from RosemarySB/quiz
+8d16092 - Rosie, Fri May 2 01:24:56 2025 : Minor formatting edits to dashboard recommendations
+5027580 - Rosie, Fri May 2 00:49:42 2025 : Added dashboard recommendations and Help Centre placeholder page as well as a minor edit to QuizForm question wording
+061e157 - Rosie, Thu May 1 21:58:58 2025 : Added quiz database functionality to views.py
+6049058 - Rosie, Thu May 1 21:34:12 2025 : Added form to quiz html page and added start_quiz.html
+beab7df - Rosie, Thu May 1 21:05:27 2025 : Added quiz form
+7701f56 - Rosie, Thu May 1 18:41:43 2025 : Added Quiz results database and user interfact to begin quiz
+a3ccf30 - Martyna Ofiara, Fri Apr 25 14:52:44 2025 : Update views.py
+1428bb2 - Martyna Ofiara, Fri Apr 25 14:50:18 2025 : Update debug_utils.py
+fddbca1 - Martyna Ofiara, Fri Apr 25 14:48:19 2025 : Update models.py
+54b647a - Emma Bryan, Wed Apr 23 20:25:38 2025 : Merge pull request #17 from amy-baker/publish-subscribe-feature
+822b404 - Amy Baker'git commit -m adding, Wed Apr 23 20:23:22 2025 : initial notifications functionality
+721c1e5 - Emma Bryan, Tue Apr 22 17:37:50 2025 : Merge pull request #16 from mavayy/patch-14
+89e671b - Emma Bryan, Tue Apr 22 17:37:41 2025 : Merge pull request #15 from mavayy/patch-13
+93a0439 - Emma Bryan, Tue Apr 22 17:37:31 2025 : Merge pull request #14 from mavayy/patch-12
+6814713 - Emma Bryan, Tue Apr 22 17:37:18 2025 : Merge pull request #13 from mavayy/patch-11
+53049f9 - Martyna Ofiara, Tue Apr 22 17:37:07 2025 : Update appointment.html
+e6868c8 - Martyna Ofiara, Tue Apr 22 17:36:13 2025 : Update appointments.html
+c267866 - Martyna Ofiara, Tue Apr 22 17:34:51 2025 : Update forms.py
+56eee4f - Martyna Ofiara, Tue Apr 22 17:33:55 2025 : Update views.py
+177c7d6 - emma, Fri Apr 18 13:07:10 2025 : Add event delete/edit/view functionality
+84feeb9 - emma, Fri Apr 18 05:47:28 2025 : Add calendar CSS
+323f766 - emma, Fri Apr 18 05:37:14 2025 : Add README.md
+d62fa00 - emma, Thu Apr 17 16:47:39 2025 : fix bug in debug script where events weren't populating
+2912546 - emma, Thu Apr 17 16:39:47 2025 : update database structure to include: - Calendar->Event Aggregation - Event<-Appointment Inheritance
+da326a6 - Emma Bryan, Thu Apr 17 13:57:27 2025 : Merge pull request #10 from emmabry/calendar
+e5f4776 - emma, Thu Apr 17 13:57:05 2025 : add calendar
+2f32371 - emma, Thu Apr 17 13:56:56 2025 : add calendar
+34f1706 - emma, Thu Apr 17 12:16:35 2025 : add inheritance class structure to users
+e964cbd - Emma Bryan, Thu Apr 17 11:54:39 2025 : Merge pull request #8 from mavayy/patch-7
+fa5ac2f - Emma Bryan, Thu Apr 17 11:54:30 2025 : Merge pull request #7 from mavayy/patch-6
+de31f80 - Emma Bryan, Thu Apr 17 11:54:17 2025 : Merge pull request #9 from mavayy/patch-8
+bbca48f - Martyna Ofiara, Wed Apr 16 14:34:01 2025 : Create appointment.html
+e2e2f7e - Martyna Ofiara, Wed Apr 16 14:32:34 2025 : Update appointments.html
+882b1a1 - Martyna Ofiara, Wed Apr 16 14:29:44 2025 : Update views.py
+8e40ed1 - Emma Bryan, Wed Apr 16 09:30:34 2025 : Merge pull request #2 from mavayy/patch-1
+781e09f - Emma Bryan, Wed Apr 16 09:30:19 2025 : Merge pull request #4 from mavayy/patch-3
+495c984 - Emma Bryan, Wed Apr 16 09:30:04 2025 : Merge pull request #3 from mavayy/patch-2
+5638729 - Emma Bryan, Wed Apr 16 09:29:54 2025 : Merge pull request #5 from mavayy/patch-4
+54d6f12 - Emma Bryan, Wed Apr 16 09:29:43 2025 : Merge pull request #6 from mavayy/patch-5
+d99cb4d - mavayy, Tue Apr 15 16:30:43 2025 : Update debug_utils.py
+5ac2f81 - mavayy, Tue Apr 15 16:28:39 2025 : Create appointments.html
+de5ada8 - mavayy, Tue Apr 15 16:26:42 2025 : Update base.html
+39fc513 - mavayy, Tue Apr 15 16:24:03 2025 : Update models.py
+123a4c9 - mavayy, Tue Apr 15 16:18:39 2025 : Update views.py
+467ff6f - Emma Bryan, Mon Apr 14 13:57:38 2025 : Merge pull request #1 from emmabry/landing-page
+44bc17e - emma, Mon Apr 14 13:56:37 2025 : add signup & login functionality, add landing page & skeleton for dashboard & quiz
+0b7e6b0 - emma, Thu Apr 3 17:14:33 2025 : Initial commit
